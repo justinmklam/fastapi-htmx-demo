@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block main_content %}
+
+<body>
+    <h1>
+        FastAPI HTMX Demo
+    </h1>
+
+    <h2>Basic Form</h2>
+
+    <form id="basic-form" hx-swap="innerHTML" hx-target="#basic-form-result" hx-post="/basic-form">
+        <input name="name" placeholder="Name"></input>
+        <input name="email" placeholder="Email"></input>
+        <button>Submit</button>
+    </form>
+    Result:
+    <pre id="basic-form-result"></pre>
+
+    <h2>Select Tag</h2>
+    <select name="car" id="cars" hx-get="/select-cars" hx-swap="innerHTML" hx-target="#car-result">
+        <option value="volvo">Volvo</option>
+        <option value="toyota">Toyota</option>
+        <option value="subaru">Subaru</option>
+    </select>
+    Result:
+    <pre id="car-result"></pre>
+
+    <h3>Search Box</h3>
+    <input class="form-control" type="search" name="search" placeholder="Begin Typing To Search Users..."
+        hx-get="/search" hx-trigger="keyup changed delay:500ms, search" hx-target="#search-results">
+    Result:
+    <pre id="search-results"></pre>
+</body>
+
+{% endblock %}
